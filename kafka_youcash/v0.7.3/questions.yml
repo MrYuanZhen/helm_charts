@@ -27,36 +27,36 @@ questions:
     description: "Zookeeper image tag"
     type: string
     label: Zookeeper Image Tag
-  - variable: schema-registry.image
-    default: "confluentinc/cp-schema-registry"
-    description: "Kafka schema registry image name"
-    type: string
-    label: Kafka Schema-Registry Image Name
-  - variable: schema-registry.imageTag
-    default: "4.0.1"
-    description: "Kafka schema registry image tag"
-    type: string
-    label: Kafka Schema-Registry Image Tag
-  - variable: kafka-rest.image.repository
-    default: "confluentinc/cp-kafka-rest"
-    description: "Kafka-REST image name"
-    type: string
-    label: Kafka-REST Image Name
-  - variable: kafka-rest.image.tag
-    default: "4.0.0"
-    description: "Kafka rest image tag"
-    type: string
-    label: Kafka-REST Image Tag
-  - variable: kafka-topics-ui.image.repository
-    default: "landoop/kafka-topics-ui"
-    description: "kafka-topics-ui image name"
-    type: string
-    label: Kafka-Topics-UI Image Name
-  - variable: kafka-topics-ui.image.tag
-    default: "latest"
-    description: "kafka-topics-ui image tag"
-    type: string
-    label: Kafka-Topics-UI Image Tag
+  # - variable: schema-registry.image
+  #   default: "confluentinc/cp-schema-registry"
+  #   description: "Kafka schema registry image name"
+  #   type: string
+  #   label: Kafka Schema-Registry Image Name
+  # - variable: schema-registry.imageTag
+  #   default: "4.0.1"
+  #   description: "Kafka schema registry image tag"
+  #   type: string
+  #   label: Kafka Schema-Registry Image Tag
+  # - variable: kafka-rest.image.repository
+  #   default: "confluentinc/cp-kafka-rest"
+  #   description: "Kafka-REST image name"
+  #   type: string
+  #   label: Kafka-REST Image Name
+  # - variable: kafka-rest.image.tag
+  #   default: "4.0.0"
+  #   description: "Kafka rest image tag"
+  #   type: string
+  #   label: Kafka-REST Image Tag
+  # - variable: kafka-topics-ui.image.repository
+  #   default: "landoop/kafka-topics-ui"
+  #   description: "kafka-topics-ui image name"
+  #   type: string
+  #   label: Kafka-Topics-UI Image Name
+  # - variable: kafka-topics-ui.image.tag
+  #   default: "latest"
+  #   description: "kafka-topics-ui image tag"
+  #   type: string
+  #   label: Kafka-Topics-UI Image Tag
 # Kafka Configurations
 - variable: replicas
   default: 3
@@ -106,45 +106,45 @@ questions:
     description: "If undefined or null, uses the default StorageClass. Default to null"
     type: storageclass
     label: Default StorageClass for Zookeeper
-# kafka-Topics-UI Configurations
-- variable: kafka-topics-ui.enabled
-  default: true
-  description: "Enable kafka topics ui dashboard"
-  type: boolean
-  label: Enable Kafka Topics UI Dashboard
-  group: "Kafka Topics UI"
-- variable: kafka-topics-ui.ingress.enabled
-  default: true
-  description: "Expose kafka topics UI using Layer 7 Load Balancer - ingress"
-  type: boolean
-  label: Expose Kafka Topics UI using Layer 7 Load Balancer
-  show_if: "kafka-topics-ui.enabled=true"
-  show_subquestion_if: true
-  group: "Kafka Topics UI"
-  subquestions:
-  - variable: kafka-topics-ui.ingress.hosts[0]
-    default: "xip.io"
-    description: "layer 7 Load Balancer hostname"
-    type: hostname
-    show_if: "kafka-topics-ui.enabled=true&&kafka-topics-ui.ingress.enabled=true"
-    required: true
-    label: Layer 7 Load Balancer Hostname
-- variable: kafka-topics-ui.service.type
-  default: "NodePort"
-  description: "Kafka topics ui Service type"
-  type: enum
-  group: "Kafka Topics UI"
-  options:
-    - "ClusterIP"
-    - "NodePort"
-  required: true
-  label: Service Type of Kafka Topics UI 
-  show_subquestion_if: "NodePort"
-  subquestions:
-  - variable: kafka-topics-ui.service.nodePort
-    default: ""
-    description: "NodePort port number(to set explicitly, choose port between 30000-32767)"
-    type: int
-    min: 30000
-    max: 32767
-    label: Service NodePort number
+# # kafka-Topics-UI Configurations
+# - variable: kafka-topics-ui.enabled
+#   default: true
+#   description: "Enable kafka topics ui dashboard"
+#   type: boolean
+#   label: Enable Kafka Topics UI Dashboard
+#   group: "Kafka Topics UI"
+# - variable: kafka-topics-ui.ingress.enabled
+#   default: true
+#   description: "Expose kafka topics UI using Layer 7 Load Balancer - ingress"
+#   type: boolean
+#   label: Expose Kafka Topics UI using Layer 7 Load Balancer
+#   show_if: "kafka-topics-ui.enabled=true"
+#   show_subquestion_if: true
+#   group: "Kafka Topics UI"
+#   subquestions:
+#   - variable: kafka-topics-ui.ingress.hosts[0]
+#     default: "xip.io"
+#     description: "layer 7 Load Balancer hostname"
+#     type: hostname
+#     show_if: "kafka-topics-ui.enabled=true&&kafka-topics-ui.ingress.enabled=true"
+#     required: true
+#     label: Layer 7 Load Balancer Hostname
+# - variable: kafka-topics-ui.service.type
+#   default: "NodePort"
+#   description: "Kafka topics ui Service type"
+#   type: enum
+#   group: "Kafka Topics UI"
+#   options:
+#     - "ClusterIP"
+#     - "NodePort"
+#   required: true
+#   label: Service Type of Kafka Topics UI 
+#   show_subquestion_if: "NodePort"
+#   subquestions:
+#   - variable: kafka-topics-ui.service.nodePort
+#     default: ""
+#     description: "NodePort port number(to set explicitly, choose port between 30000-32767)"
+#     type: int
+#     min: 30000
+#     max: 32767
+#     label: Service NodePort number

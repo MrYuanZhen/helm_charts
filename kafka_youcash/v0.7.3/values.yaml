@@ -345,31 +345,31 @@ zookeeper:
 # ------------------------------------------------------------------------------
 # Kafka Schema Registry:
 # ------------------------------------------------------------------------------
-schema-registry: 
-  enabled: true
+# schema-registry: 
+#   enabled: true
 
   ## Number of Schema Registry Pods to Deploy
-  replicaCount: 1
+  # replicaCount: 1
 
   ## schema-registry repository
-  image: "confluentinc/cp-schema-registry"
+  # image: "confluentinc/cp-schema-registry"
   ## The container tag to use
-  imageTag: 4.0.1
+  # imageTag: 4.0.1
   ## Specify a imagePullPolicy
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
-  imagePullPolicy: "IfNotPresent"
+  # imagePullPolicy: "IfNotPresent"
 
   ## Schema Registry Settings Overrides
   ## Configuration Options can be found here: https://docs.confluent.io/current/schema-registry/docs/config.html
-  configurationOverrides:
-    kafkastore.topic.replication.factor: 3
+  # configurationOverrides:
+  #   kafkastore.topic.replication.factor: 3
 
   ## Configure resource requests and limits
   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ## Confluent has production deployment guidelines here:
   ## ref: https://github.com/confluentinc/schema-registry/blob/master/docs/deployment.rst
   ##
-  resources: {}
+  # resources: {}
     # limits:
     #  cpu: 100m
     #  memory: 128Mi
@@ -378,27 +378,27 @@ schema-registry:
     #  memory: 128Mi
 
   ## The port on which the SchemaRegistry will be available and serving requests
-  servicePort: 8081
+  # servicePort: 8081
 
   ## If `Kafka.Enabled` is `false`, kafkaStore.overrideBootstrapServers must be provided for Master Election.
   ## You can list load balanced service endpoint, or list of all brokers (which is hard in K8s).  e.g.:
   ## overrideBootstrapServers: "PLAINTEXT://dozing-prawn-kafka-headless:9092"
   ## Charts uses Kafka Coordinator Master Election: https://docs.confluent.io/current/schema-registry/docs/design.html#kafka-coordinator-master-election
-  kafkaStore:
-    overrideBootstrapServers: ""
+  # kafkaStore:
+  #   overrideBootstrapServers: ""
     # By Default uses Release Name, but can be overridden.  Which means each release is its own group of
     # Schema Registry workers.  You can have multiple groups talking to same Kafka Cluster
-    overrideGroupId: ""
+    # overrideGroupId: ""
     ## Additional Java arguments to pass to Kafka.
     # schemaRegistryOpts: -Dfoo=bar
 
   # Options for connecting to SASL kafka brokers
-  sasl:
-    configPath: "/etc/kafka-config"
-    scram:
-      enabled: false
-      clientUser: "kafka-client"
-      zookeeperClientUser: "zookeeper-client"
+  # sasl:
+  #   configPath: "/etc/kafka-config"
+  #   scram:
+  #     enabled: false
+  #     clientUser: "kafka-client"
+  #     zookeeperClientUser: "zookeeper-client"
       # Passwords can be either provided here or pulled from an existing k8s secret.
       # If user wants to specify the password here:
       # clientPassword: "client-password"
@@ -424,31 +424,31 @@ kafka-rest:
 # ------------------------------------------------------------------------------
 # Kafka Topics UI:
 # ------------------------------------------------------------------------------
-kafka-topics-ui:
+# kafka-topics-ui:
   ## If true, install the Zookeeper chart alongside Kafka
   ## ref: https://github.com/kubernetes/charts/tree/master/incubator/zookeeper
-  enabled: false
+  # enabled: false
 
-  replicaCount: 1
-  image:
-    repository: landoop/kafka-topics-ui
-    tag: latest
-    pullPolicy: IfNotPresent
+  # replicaCount: 1
+  # image:
+  #   repository: landoop/kafka-topics-ui
+  #   tag: latest
+  #   pullPolicy: IfNotPresent
 
-  service:
-    type: ClusterIP
-    # nodePort: 
+  # service:
+  #   type: ClusterIP
+  #   # nodePort: 
 
-  ingress:
-    enabled: false
-    # Used to create an Ingress record.
-    hosts:
-      - xip.io
-    annotations:
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-    tls:
-      # Secrets must be manually created in the namespace.
-      # - secretName: chart-example-tls
-      #   hosts:
-      #     - chart-example.local
+  # ingress:
+  #   enabled: false
+  #   # Used to create an Ingress record.
+  #   hosts:
+  #     - xip.io
+  #   annotations:
+  #     # kubernetes.io/ingress.class: nginx
+  #     # kubernetes.io/tls-acme: "true"
+  #   tls:
+  #     # Secrets must be manually created in the namespace.
+  #     # - secretName: chart-example-tls
+  #     #   hosts:
+  #     #     - chart-example.local
